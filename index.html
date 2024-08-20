@@ -6,13 +6,14 @@
     <title>Convite Especial</title>
     <style>
         body {
-            background: url('https://www.publicdomainpictures.net/pictures/320000/velka/background-image.png') no-repeat center center fixed;
+            background: url('https://images.pexels.com/photos/556667/pexels-photo-556667.jpeg?auto=compress&cs=tinysrgb&w=1600') no-repeat center center fixed;
             background-size: cover;
             font-family: 'Arial', sans-serif;
             text-align: center;
             color: white;
             margin-top: 50px;
             overflow: hidden;
+            position: relative;
         }
         .container {
             background: rgba(0, 0, 0, 0.7);
@@ -29,27 +30,6 @@
         p {
             font-size: 1.5em;
         }
-        .flowers {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-        }
-        #flower1 {
-            top: 10px;
-            left: 10px;
-        }
-        #flower2 {
-            top: 10px;
-            right: 10px;
-        }
-        #flower3 {
-            bottom: 10px;
-            left: 10px;
-        }
-        #flower4 {
-            bottom: 10px;
-            right: 10px;
-        }
         button {
             font-size: 1.2em;
             padding: 10px 20px;
@@ -58,6 +38,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            position: relative;
         }
         #yesBtn {
             background-color: #4CAF50;
@@ -69,7 +50,6 @@
         #noBtn {
             background-color: #f44336;
             color: white;
-            position: absolute;
         }
 
         /* Animação dos corações */
@@ -122,11 +102,45 @@
         <button id="yesBtn">Sim</button>
         <button id="noBtn">Não</button>
     </div>
-    <img src="https://www.publicdomainpictures.net/pictures/300000/velka/flower-1586683566W9I.jpg" class="flowers" id="flower1">
-    <img src="https://www.publicdomainpictures.net/pictures/300000/velka/flower-1586683566W9I.jpg" class="flowers" id="flower2">
-    <img src="https://www.publicdomainpictures.net/pictures/300000/velka/flower-1586683566W9I.jpg" class="flowers" id="flower3">
-    <img src="https://www.publicdomainpictures.net/pictures/300000/velka/flower-1586683566W9I.jpg" class="flowers" id="flower4">
 
-    <script src="script.js"></script>
+    <script>
+        // Movendo o botão "Não" quando o mouse passa por cima
+        document.getElementById('noBtn').addEventListener('mouseover', function() {
+            const maxX = window.innerWidth - this.offsetWidth;
+            const maxY = window.innerHeight - this.offsetHeight;
+            
+            // Define nova posição dentro dos limites da janela
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            this.style.position = 'absolute';
+            this.style.left = `${newX}px`;
+            this.style.top = `${newY}px`;
+        });
+
+        // Redirecionamento ao clicar no botão "Sim"
+        document.getElementById('yesBtn').addEventListener('click', function() {
+            window.location.href = 'https://www.youtube.com/watch?v=kQ2ZFVJNMs0&list=RDkQ2ZFVJNMs0&start_radio=1';
+        });
+
+        // Alert ao clicar no botão "Não"
+        document.getElementById('noBtn').addEventListener('click', function() {
+            alert('Ah, que pena! Talvez outra vez.');
+        });
+
+        // Criando corações flutuantes
+        function createHearts() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHearts, 500);
+    </script>
 </body>
 </html>
